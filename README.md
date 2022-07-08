@@ -1,3 +1,5 @@
-# Dependências
+# Todo List
 
-- yarn antd @ant-design/icons axios styled-components uuid basic-react-list react-swipeable-list
+- Dependências
+
+* yarn antd @ant-design/icons axios styled-components uuid basic-react-list react-swipeable-list
