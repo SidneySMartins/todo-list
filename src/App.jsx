@@ -3,6 +3,7 @@ import { Container, Wrapper, Title, ItemWrapper } from "./styles/App-styled";
 import { AddTodo, Todos } from "./components";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
+import { notification } from "antd";
 
 function App() {
 	const [todos, setTodos] = useState([]);
@@ -27,13 +28,40 @@ function App() {
 			});
 	};
 
+	const markComplete = (id) => {
+		let markCompletedTodos = todos?.map((todo) => {
+			if (todo?.id === id) {
+				todo.completed = !todo.completed;
+			}
+			return todo;
+		});
+		setTodos(markCompletedTodos);
+	};
+
+	const deleteTodo = (id) => {
+		axios
+			.delete(`https://jsonplaceholder.typicode.com/todos/${id}`)
+			.then(() => {
+				notification.success({
+					description: "Tarefa deletada com sucesso",
+					placement: "top",
+					duration: 2,
+				});
+				setTodos([...todos.filter((todo) => todo?.id !== id)]);
+			});
+	};
+
 	return (
 		<Container>
 			<Wrapper>
 				<Title>Teste</Title>
 				<AddTodo addTodo={addTodo} />
 				<ItemWrapper>
-					<Todos todos={todos} />
+					<Todos
+						todos={todos}
+						markComplete={markComplete}
+						deleteTodo={deleteTodo}
+					/>
 				</ItemWrapper>
 			</Wrapper>
 		</Container>

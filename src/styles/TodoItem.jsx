@@ -8,6 +8,14 @@ export const TitleContainer = styled.li`
 	padding: 10px 20px;
 	border-radius: 50px;
 	font-weight: bold;
-	text-decoration: none;
+	text-decoration: ${(props) => (props?.todoStatus ? "line-through" : "none")};
 	cursor: pointer;
+`;
+
+export const Icon = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: ${(props) => props?.color || "#000"};
+	font-size: 1.5rem;
 `;

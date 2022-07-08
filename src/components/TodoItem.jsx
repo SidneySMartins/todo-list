@@ -1,5 +1,5 @@
 import React from "react";
-import { TitleContainer } from "../styles/TodoItem";
+import { Icon, TitleContainer } from "../styles/TodoItem";
 import {
 	LeadingActions,
 	SwipeableList,
@@ -8,23 +8,25 @@ import {
 	TrailingActions,
 } from "react-swipeable-list";
 import "react-swipeable-list/dist/styles.css";
+import { DeleteFilled, CheckCircleFilled } from "@ant-design/icons";
 
-export default function TodoItem({ todo }) {
-	const leadingActions = () => (
+export default function TodoItem({ todo, markComplete, deleteTodo }) {
+	const leadingActions = (id) => (
 		<LeadingActions>
-			<SwipeAction onClick={() => console.info("swipe action triggered")}>
-				Action name
+			<SwipeAction onClick={() => markComplete(id)}>
+				<Icon color="#03da2ab4">
+					<CheckCircleFilled />
+				</Icon>
 			</SwipeAction>
 		</LeadingActions>
 	);
 
-	const trailingActions = () => (
+	const trailingActions = (id) => (
 		<TrailingActions>
-			<SwipeAction
-				destructive={true}
-				onClick={() => console.info("swipe action triggered")}
-			>
-				Delete
+			<SwipeAction destructive={true} onClick={() => deleteTodo(id)}>
+				<Icon color="#da0d03b4">
+					<DeleteFilled />
+				</Icon>
 			</SwipeAction>
 		</TrailingActions>
 	);
@@ -32,10 +34,12 @@ export default function TodoItem({ todo }) {
 	return (
 		<SwipeableList>
 			<SwipeableListItem
-				leadingActions={leadingActions()}
-				trailingActions={trailingActions()}
+				leadingActions={leadingActions(todo?.id)}
+				trailingActions={trailingActions(todo?.id)}
 			>
-				<TitleContainer>{todo?.title}</TitleContainer>
+				<TitleContainer todoStatus={todo?.completed}>
+					{todo?.title}
+				</TitleContainer>
 			</SwipeableListItem>
 		</SwipeableList>
 	);
