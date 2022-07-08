@@ -1,5 +1,5 @@
 import React from "react";
-import { Icon, TitleContainer } from "../styles/TodoItem";
+import { Icon, TitleContainer } from "../../styles/TodoItem";
 import {
 	LeadingActions,
 	SwipeableList,

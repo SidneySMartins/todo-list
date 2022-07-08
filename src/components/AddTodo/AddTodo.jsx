@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Forms, StyledInput, StyledButton } from "../styles/AddTodoStyles";
+import { Forms, StyledInput, StyledButton } from "../../styles/AddTodoStyles";
 
 export default function AddTodo({ addTodo }) {
 	const [title, setTitle] = useState("");
