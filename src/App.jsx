@@ -54,7 +54,7 @@ function App() {
 	return (
 		<Container>
 			<Wrapper>
-				<Title>Teste</Title>
+				<Title>Todo List</Title>
 				<AddTodo addTodo={addTodo} />
 				<ItemWrapper>
 					<Todos
